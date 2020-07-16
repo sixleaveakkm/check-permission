@@ -7,7 +7,5 @@ steps:
     with:
       permission: "write"
       token: ${{ secrets.CI_TOKEN }}
-      repos: ""
+      repos: "repo_org/repo_name,repo_org/another_name"
 ```
-
-https://developer.github.com/v3/repos/collaborators/#get-repository-permissions-for-a-user

@@ -3,7 +3,7 @@ description: 'Check provided token has given permission to repos'
 
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'
 
 inputs:
   permission:
