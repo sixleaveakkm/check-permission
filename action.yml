@@ -1,0 +1,18 @@
+name: 'check permission'
+description: 'Check provided token has given permission to repos'
+
+runs:
+  using: 'node12'
+  main: 'index.js'
+
+inputs:
+  permission:
+    description: 'permission level wanted, possible values are "admin", "write", "read", "none"'
+    required: true
+  token:
+    description: 'the token going to check permission'
+    required: true
+
+  repos:
+    description: 'comma separated github repo names, e.g. "org/repo,org2/repo3"'
+    required: true

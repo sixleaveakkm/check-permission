@@ -1,0 +1,23 @@
+{
+  "name": "check-permission",
+  "version": "1.0.0",
+  "description": "github action checks provided token user has given permission to specific github repo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sixleaveakkm/check-permission.git"
+  },
+  "author": "sixleaveakkm@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sixleaveakkm/check-permission/issues"
+  },
+  "homepage": "https://github.com/sixleaveakkm/check-permission#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0"
+  }
+}
