@@ -16,3 +16,7 @@ inputs:
   repos:
     description: 'comma separated github repo names, e.g. "org/repo,org2/repo3"'
     required: true
+
+branding:
+  icon: check-square
+  color: orange
