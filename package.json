@@ -4,6 +4,7 @@
   "description": "github action checks provided token user has given permission to specific github repo",
   "main": "dist/index.js",
   "scripts": {
+    "deploy": "tsc index.ts && ncc build index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

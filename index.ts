@@ -9,27 +9,35 @@ const perms = ["none", "read", "write", "admin"];
   const targetPermission = core.getInput('permission')
 
   const octokit = github.getOctokit(token)
-  const response = await octokit.users.getAuthenticated()
+
+  let response
+  try {
+    response = await octokit.users.getAuthenticated()
+  } catch (e) {
+    core.setFailed(`authentication failed with provided token`)
+    return
+  }
   const username = response.data.login
 
   for ( const rep of repos ) {
+    const tuple = rep.split("/")
+    const owner = tuple[0]
+    const repo = tuple[1]
+    let actualPerm
     try {
-      const tuple = rep.split("/")
-      const owner = tuple[0]
-      const repo = tuple[1]
       const res = await octokit.repos.getCollaboratorPermissionLevel({
         owner: owner,
         repo: repo,
         username: username
       })
-      const actualPerm = res.data.permission
-      core.debug(`permission for ${rep} is ${actualPerm}`)
-      if ( perms.indexOf(actualPerm) < perms.indexOf(targetPermission) ) {
-        core.setFailed(`permission for ${rep} not fit required`)
-        return
-      }
+      actualPerm = res.data.permission
     } catch (e) {
-      core.setFailed(`permission for ${rep} meets an error, ${e}`)
+      actualPerm = 'none'
+    }
+    core.debug(`permission for ${rep} is ${actualPerm}`)
+    if ( perms.indexOf(actualPerm) < perms.indexOf(targetPermission) ) {
+      core.setFailed(`permission for ${rep} not fit required`)
+      return
     }
   }
 })()

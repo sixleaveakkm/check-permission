@@ -4908,7 +4908,7 @@ var core = __webpack_require__(540);
 var github = __webpack_require__(263);
 var perms = ["none", "read", "write", "admin"];
 (function () { return __awaiter(void 0, void 0, void 0, function () {
-    var repos, token, targetPermission, octokit, response, username, _i, repos_1, rep, tuple, owner, repo, res, actualPerm, e_1;
+    var repos, token, targetPermission, octokit, response, e_1, username, _i, repos_1, rep, tuple, owner, repo, actualPerm, res, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -4916,43 +4916,55 @@ var perms = ["none", "read", "write", "admin"];
                 token = core.getInput('token');
                 targetPermission = core.getInput('permission');
                 octokit = github.getOctokit(token);
-                return [4 /*yield*/, octokit.users.getAuthenticated()];
+                _a.label = 1;
             case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, octokit.users.getAuthenticated()];
+            case 2:
                 response = _a.sent();
+                return [3 /*break*/, 4];
+            case 3:
+                e_1 = _a.sent();
+                core.setFailed("authentication failed with provided token");
+                return [2 /*return*/];
+            case 4:
                 username = response.data.login;
                 _i = 0, repos_1 = repos;
-                _a.label = 2;
-            case 2:
-                if (!(_i < repos_1.length)) return [3 /*break*/, 7];
+                _a.label = 5;
+            case 5:
+                if (!(_i < repos_1.length)) return [3 /*break*/, 11];
                 rep = repos_1[_i];
-                _a.label = 3;
-            case 3:
-                _a.trys.push([3, 5, , 6]);
                 tuple = rep.split("/");
                 owner = tuple[0];
                 repo = tuple[1];
+                actualPerm = void 0;
+                _a.label = 6;
+            case 6:
+                _a.trys.push([6, 8, , 9]);
                 return [4 /*yield*/, octokit.repos.getCollaboratorPermissionLevel({
                         owner: owner,
                         repo: repo,
                         username: username
                     })];
-            case 4:
+            case 7:
                 res = _a.sent();
                 actualPerm = res.data.permission;
+                return [3 /*break*/, 9];
+            case 8:
+                e_2 = _a.sent();
+                actualPerm = 'none';
+                return [3 /*break*/, 9];
+            case 9:
                 core.debug("permission for " + rep + " is " + actualPerm);
                 if (perms.indexOf(actualPerm) < perms.indexOf(targetPermission)) {
                     core.setFailed("permission for " + rep + " not fit required");
                     return [2 /*return*/];
                 }
-                return [3 /*break*/, 6];
-            case 5:
-                e_1 = _a.sent();
-                core.setFailed("permission for " + rep + " meets an error, " + e_1);
-                return [3 /*break*/, 6];
-            case 6:
+                _a.label = 10;
+            case 10:
                 _i++;
-                return [3 /*break*/, 2];
-            case 7: return [2 /*return*/];
+                return [3 /*break*/, 5];
+            case 11: return [2 /*return*/];
         }
     });
 }); })();
