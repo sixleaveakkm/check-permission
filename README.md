@@ -1,11 +1,12 @@
 # check-permission
+**Cross-Repository Permission Check**
 
 The action checks if given github token has permission to other repos.
  
 ```yaml
 steps:
   - name: "check permission to repo"
-    uses: "sixleaveakkm/check-permission"
+    uses: "sixleaveakkm/check-permission@0.5"
     with:
       permission: "write"
       token: ${{ secrets.CI_TOKEN }}
