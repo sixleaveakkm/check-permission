@@ -31,6 +31,15 @@ steps:
 
 ```
 
+## About Version code
+For now, the latest version should be `1.0`.  
+You could use `uses: sixleaveakkm/check-permission@1.0` in your workflow,  
+but for a more secure way is to use commit id, since it handles your github token.
+
+The latest commit id is `ea1e105438e79c57b775a8ef1b2dc4ce7a7133da`
+Alternatively, you could use `uses: sixleaveakkm/check-permission@ea1e105438e79c57b775a8ef1b2dc4ce7a7133da` to ensure  
+ the version you used.
+
 ## Parameters
 ### permission  
 possible permission are `admin`, `write`, `read`, and `none`  [doc](https://developer.github.com/v3/repos/collaborators/#get-repository-permissions-for-a-user)
