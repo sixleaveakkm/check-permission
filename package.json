@@ -4,7 +4,7 @@
   "description": "github action checks provided token user has given permission to specific github repo",
   "main": "dist/index.js",
   "scripts": {
-    "deploy": "tsc index.ts && ncc build index.js",
+    "deploy": "node_modules/.bin/tsc index.ts && node_modules/.bin/ncc build index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +20,9 @@
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.3",
+    "typescript": "^3.9.7"
   }
 }
